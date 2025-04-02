@@ -1,19 +1,19 @@
+import os
 from flask import Flask, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-import os
 
 app = Flask(__name__)
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///media.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///media.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
 frontend_folder = os.path.join(os.getcwd(), "..", "frontend", "dist")
 
-@app.route("/", defaults={"filename":""})
+@app.route("/", defaults={"filename": ""})
 @app.route("/<path:filename>")
 def index(filename):
     if not filename:
