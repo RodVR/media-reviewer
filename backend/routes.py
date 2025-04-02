@@ -27,11 +27,11 @@ def create_media():
         if type == "game":
             img_url = f"https://www.freepnglogos.com/uploads/games-png/download-games-png-transparent-for-designing-work-5.png"
         elif type == "movie":
-            img_url = f"https://pnghq.com/wp-content/uploads/movie-logo-png-free-png-image-downloads-72512.png"
+            img_url = f"https://4.bp.blogspot.com/-sD42_bp7c_w/U2wI0RarXYI/AAAAAAAAJ1g/S1RMC3z5ubY/s1600/FilmReelrutzui.png"
         elif type == "book":
-            img_url = f"https://th.bing.com/th/id/OIP.-WX_diHIut9zISTrL7u_uwHaD8?rs=1&pid=ImgDetMain"
+            img_url = f"https://th.bing.com/th/id/R.4ee9220808b93bbab6a1ce93cb0fc6ee?rik=h8yyOZ1Iy%2bPl4A&pid=ImgRaw&r=0"
         elif type == "other":
-            img_url = f"https://th.bing.com/th/id/OIP.hdsjKg4vTX7JPbm87euX2AHaHa?rs=1&pid=ImgDetMain"
+            img_url = f"https://cdn-icons-png.flaticon.com/512/8467/8467890.png"
         else:
             img_url = None
             
