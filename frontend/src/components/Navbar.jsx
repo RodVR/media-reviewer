@@ -5,7 +5,7 @@ import CreateUserModal from "./CreateUserModal";
 
 
 
-const Navbar = () => {
+const Navbar = ({setUsers}) => {
     const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Container maxW={"900px"}>
@@ -26,13 +26,13 @@ const Navbar = () => {
                 display={{base:"none", sm:"flex"}}
                 >
                     <img src="/logo.png" alt="logo" width={80} height={50}/>
-                    <Text color={"white"} fontSize={"1.8rem"}>Media Rater</Text>
+                    <Text color={"white"} fontSize={"1.8rem"}>Media Review</Text>
                 </Flex>
                 <Flex gap={3} alignItems={"center"}>
                     <Button onClick={toggleColorMode}>
                         {colorMode === "light" ? <SiMoonrepo /> : <ImSun  size={20}/>}
                     </Button>
-                    <CreateUserModal />
+                    <CreateUserModal setUsers={setUsers}/>
                 </Flex>
             </Flex>
         </Box>

@@ -16,7 +16,7 @@ def create_media():
         
         required_field = ["name", "description", "type"]
         for field in required_field:
-            if field not in data:
+            if field not in data or not data.get(field):
                 return jsonify({"error":f"Missing required field: {field}"}), 400
         
         name = data.get("name")
@@ -40,7 +40,7 @@ def create_media():
         
         db.session.commit()
         
-        return jsonify({"msg":"media created"}), 201
+        return jsonify(new_media.to_json()), 201
     
     except Exception as e:
         db.session.rollback()

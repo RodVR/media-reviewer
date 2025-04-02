@@ -20,13 +20,16 @@ import {
 	useToast,
 } from "@chakra-ui/react"
 
+import { useState } from "react"
+
 import { BiEdit } from "react-icons/bi";
+import { BASE_URL } from "../App";
 
 
 
-function EditModal() {
+function EditModal({setUsers, user}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
-    /*const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [inputs, setInputs] = useState({
         name: user.name,
         tags: user.tags,
@@ -34,7 +37,7 @@ function EditModal() {
     })
     const toast = useToast()
 
-    const handleEditUser = async(e) => {
+    const handleEdit = async(e) => {
         e.preventDefault()
         setIsLoading(true)
         try {
@@ -52,7 +55,7 @@ function EditModal() {
             setUsers((prevUsers) => prevUsers.map((u) => u.id === user.id ? data : u))
             toast({
                 status: "success",
-                title: "Woohoo!!",
+                title: "Success",
                 description: "Updated successfully!",
                 duration: 2000,
                 position: "top"
@@ -69,7 +72,7 @@ function EditModal() {
         } finally {
             setIsLoading(false)
         }
-    }*/
+    }
 
     return (
         <>
@@ -84,6 +87,7 @@ function EditModal() {
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
+                <form onSubmit={handleEdit}>
                     <ModalContent>
                         <ModalHeader>Entry</ModalHeader>
                         <ModalCloseButton />
@@ -93,14 +97,16 @@ function EditModal() {
                                     <FormLabel>Name</FormLabel>
                                     <Input 
                                         placeholder="Add name"
-
+                                        value={inputs.name}
+                                        onChange={(e) => setInputs((prev) => ({...prev, name: e.target.value}))}
                                     />
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel>Tags</FormLabel>
                                     <Input 
                                         placeholder="Add tags"
-
+                                        value={inputs.tags}
+                                        onChange={(e) => setInputs((prev) => ({...prev, tags: e.target.value}))}
                                     />
                                 </FormControl>
                             </Flex>
@@ -110,25 +116,20 @@ function EditModal() {
                                     resize={"none"}
                                     overflow={"hidden"}
                                     placeholder="Add a description..."
-
+                                    value={inputs.description}
+                                    onChange={(e) => setInputs((prev) => ({...prev, description: e.target.value}))}
                                 />
                             </FormControl>
-                                   <RadioGroup mt={4}>
-                                       <Flex gap={5}>
-                                             <Radio value="game">Game</Radio>
-                                             <Radio value="movie">Movie</Radio>
-                                             <Radio value="book">Book</Radio>
-                                             <Radio value="other">Other</Radio>                          
-                                        </Flex>
-                                  </RadioGroup>
+
                         </ModalBody>
                         <ModalFooter>
-                            <Button colorScheme="blue" mr={3}>
+                            <Button colorScheme="blue" mr={3} type="submit" isLoading={isLoading} isDisabled={!inputs.name.trim() || !inputs.description.trim()}>
                                 Update
                             </Button>
                             <Button onClick={onClose}>Cancel</Button>
                         </ModalFooter>
                     </ModalContent>
+                    </form>
             </Modal>
         </>
     )
