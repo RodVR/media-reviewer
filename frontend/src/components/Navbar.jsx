@@ -26,7 +26,7 @@ const Navbar = ({setUsers}) => {
                 display={{base:"none", sm:"flex"}}
                 >
                     <img src="/logo.png" alt="logo" width={80} height={50}/>
-                    <Text color={"white"} fontSize={"1.8rem"}>Media Review</Text>
+                    <Text color={"white"} fontSize={"1.8rem"}>Media Reviewer</Text>
                 </Flex>
                 <Flex gap={3} alignItems={"center"}>
                     <Button onClick={toggleColorMode}>
